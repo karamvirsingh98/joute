@@ -16,18 +16,21 @@ type RequiredConfigs<T extends JwsConfig> = {
     : never;
 };
 
-class Joute<T extends Record<string, any>, C extends JwsConfig = []> {
+export default class Joute<
+  T extends Record<string, any>,
+  C extends JwsConfig = []
+> {
   secret: string;
 
   constructor(secret: string) {
     this.secret = secret;
   }
 
-  issue = async (input: T & RequiredConfigs<C>) => {
+  issue = async (input?: T & RequiredConfigs<C>) => {
     const header = JSON.stringify({ alg: "HS256", typ: "JWT" });
     const h = Buffer.from(header).toString("base64url");
 
-    const payload = JSON.stringify(input);
+    const payload = JSON.stringify(input ?? {});
     const p = Buffer.from(payload).toString("base64url");
 
     const signature = await this.hash(`${h}.${p}`);
