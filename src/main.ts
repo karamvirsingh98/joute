@@ -42,7 +42,7 @@ export default class Joute<
   verify = async (token: string) => {
     const [h, p, s] = token.split(".");
     const compare = await this.hash(`${h}.${p}`);
-    if (Buffer.from(compare).toString("base64") === s) {
+    if (Buffer.from(compare).toString("base64url") === s) {
       const parsed = Buffer.from(p, "base64url").toString();
       return JSON.parse(parsed) as T & RequiredConfigs<C>;
     } else throw new Error("failed to verify jwt");
