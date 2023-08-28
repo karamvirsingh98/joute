@@ -1,7 +1,7 @@
 {
   "name": "joute",
   "author": "Karamvir Singh",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./lib/main.js",
   "types": "./lib/main.d.ts",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "build": "tsc"
   },
   "devDependencies": {
-    "typescript": "^5.2.2",
-    "@types/node": "^20.5.6"
+    "@types/node": "^20.5.6",
+    "typescript": "^5.2.2"
   }
 }
